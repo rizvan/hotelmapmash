@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>Test App 7</title>
+
+
+	<script type="text/javascript" src="config.js"></script>
+
+	<script type="text/javascript" src="jam/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="jam/underscore/underscore.js"></script>
+	<script type="text/javascript" src="jam/backbone/backbone.js"></script>
+
+
+
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+	<![endif]-->
+
+	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+
+
+	<script type="text/javascript" src="js/app.js"></script>
+
+
+	<style type="text/css">
+
+		#hotelsMap {
+			width:75%;
+			float:left;
+		}
+
+		#hotelInfo {
+			color:#333;
+			font-family: arial, sans-serif;
+			background: red;
+			width: 25%;
+			float:right;
+		}
+
+		#hotelsMap, #hotelInfo {
+			height: 400px;
+		}
+
+	</style>
+
+
+
+</head>
+<body>
+
+
+
+	<div id="hotelsMap"></div>
+	<div id="hotelInfo"></div>
+
+
+	<div id="flickrImages"></div>
+
+
+
+	<script type="text/template" id="tpl_flickrImg">
+		<img src="<%= src %>" width="50px" />
+	</script>
+
+	<script type="text/template" id="tpl_hotelPop">
+		<h2><%= name %></h2>
+		<%= shortDescription %>
+		<img src="http://images.travelnow.com/<%= thumbNailUrl %>" />
+
+		<a href="#" class="moreInfo">More info</a> | <a href="#" class="photosNearby">Photos nearby</a> | <a href="#" class="photosByName">Photos of hotel</a>
+	</script>
+
+	<script type="text/template" id="tpl_hotelInfo">
+		<dl>
+			<% _.each( HotelSummary, function( value, key ) { %>
+				<dt><%= key %></dt>
+				<dd><%= value %></dd>
+			<% }); %>
+		</dl>
+	</script>
+
+</body>
+</html>
