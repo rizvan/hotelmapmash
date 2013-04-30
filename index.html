@@ -5,6 +5,7 @@
 
 	<script type="text/javascript" src="config.js"></script>
 
+	<script type="text/javascript" src="jam/handlebars.js/handlebars-1.0.rc.1.js"></script>
 	<script type="text/javascript" src="jam/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="jam/underscore/underscore.js"></script>
 	<script type="text/javascript" src="jam/backbone/backbone.js"></script>
@@ -59,23 +60,23 @@
 
 
 	<script type="text/template" id="tpl_flickrImg">
-		<img src="<%= src %>" width="50px" />
+		<img src="{{ src }}" width="50px" />
 	</script>
 
 	<script type="text/template" id="tpl_hotelPop">
-		<h2><%= name %></h2>
-		<%= shortDescription %>
-		<img src="http://images.travelnow.com/<%= thumbNailUrl %>" />
+		<h2>{{name}}</h2>
+		{{shortDescription}}
+		<img src="http://images.travelnow.com/{{thumbNailUrl}}" />
 
 		<a href="#" class="moreInfo">More info</a> | <a href="#" class="photosNearby">Photos nearby</a> | <a href="#" class="photosByName">Photos of hotel</a>
 	</script>
 
 	<script type="text/template" id="tpl_hotelInfo">
 		<dl>
-			<% _.each( HotelSummary, function( value, key ) { %>
-				<dt><%= key %></dt>
-				<dd><%= value %></dd>
-			<% }); %>
+			{{#each hotelSummary}}
+				<dd>{{this.key}}</dd>
+				<dt>{{this.value}}</dt>
+			{{/each}}
 		</dl>
 	</script>
 

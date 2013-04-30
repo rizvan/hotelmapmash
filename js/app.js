@@ -7,10 +7,20 @@ $(function() {
 	App.Models = {};
 	App.Views = {};
 
+
+	var templateHandler = function( template, data ) {
+		// return _.template( template, data );
+		var compiled = Handlebars.compile( template );
+		return compiled( data );
+	};
+
+
+
+
 	// Simple way to hold what a photo resource should be
 	App.Models.FlickrPhoto = Backbone.Model.extend({
 		url : function() {
-			return _.template( 'http://farm<%= farmId %>.staticflickr.com/<%= serverId %>/<%= id %>_<%= secret %>.jpg', {
+			return templateHandler( 'http://farm{{ farmId }}.staticflickr.com/{{ serverId }}/{{ id }}_{{ secret }}.jpg', {
 				farmId : this.get( 'farm' ),
 				serverId : this.get( 'server' ),
 				id : this.get( 'id' ),
@@ -52,13 +62,11 @@ $(function() {
 			var attrs = this.model.attributes;
 			attrs.src = this.model.url();
 
-			this.$el.html( _.template( $( '#tpl_flickrImg' ).html(), attrs ) );
+			this.$el.html( templateHandler( $( '#tpl_flickrImg' ).html(), attrs ) );
 			return this;
 		}
 
 	});
-
-
 
 
 
@@ -67,7 +75,19 @@ $(function() {
 			return 'http://api.ean.com/ean-services/rs/hotel/v3/info?callback=?&apiKey=' + EXPEDIA_API + '&_type=json';
 		},
 		parse : function( response, options ) {
-			return response.HotelInformationResponse;
+
+			var data = {
+				hotelSummary : []
+			};
+
+			_.each( response.HotelInformationResponse.HotelSummary, function( k, v ) {
+				data.hotelSummary.push({
+					"key" : k,
+					"value" : v
+				});
+			});
+
+			return data;
 		}
 	});
 
@@ -86,7 +106,7 @@ $(function() {
 
 	App.Views.ExpediaHotelInfo = Backbone.View.extend({
 		render : function() {
-			this.$el.html( _.template( $('#tpl_hotelInfo').html(), this.model.attributes ) );
+			this.$el.html( templateHandler( $('#tpl_hotelInfo').html(), this.model.attributes ) );
 			return this;
 		}
 	});
@@ -178,7 +198,7 @@ $(function() {
 		},
 
 		render : function() {
-			this.$el.html( _.template( $('#tpl_hotelPop').html(), this.model.attributes ) );
+			this.$el.html( templateHandler( $('#tpl_hotelPop').html(), this.model.attributes ) );
 			return this;
 		}
 

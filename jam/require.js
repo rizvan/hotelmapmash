@@ -2007,6 +2007,11 @@ var jam = {
             "main": "backbone.js"
         },
         {
+            "name": "handlebars.js",
+            "location": "jam/handlebars.js",
+            "main": "handlebars-1.0.rc.1.js"
+        },
+        {
             "name": "jquery",
             "location": "jam/jquery",
             "main": "dist/jquery.js"
@@ -2026,6 +2031,9 @@ var jam = {
             ],
             "exports": "Backbone"
         },
+        "handlebars.js": {
+            "exports": "Handlebars"
+        },
         "underscore": {
             "exports": "_"
         }
@@ -2039,6 +2047,11 @@ if (typeof require !== "undefined" && require.config) {
             "name": "backbone",
             "location": "jam/backbone",
             "main": "backbone.js"
+        },
+        {
+            "name": "handlebars.js",
+            "location": "jam/handlebars.js",
+            "main": "handlebars-1.0.rc.1.js"
         },
         {
             "name": "jquery",
@@ -2058,6 +2071,9 @@ if (typeof require !== "undefined" && require.config) {
                 "jquery"
             ],
             "exports": "Backbone"
+        },
+        "handlebars.js": {
+            "exports": "Handlebars"
         },
         "underscore": {
             "exports": "_"
@@ -2074,6 +2090,11 @@ else {
             "main": "backbone.js"
         },
         {
+            "name": "handlebars.js",
+            "location": "jam/handlebars.js",
+            "main": "handlebars-1.0.rc.1.js"
+        },
+        {
             "name": "jquery",
             "location": "jam/jquery",
             "main": "dist/jquery.js"
@@ -2091,6 +2112,9 @@ else {
                 "jquery"
             ],
             "exports": "Backbone"
+        },
+        "handlebars.js": {
+            "exports": "Handlebars"
         },
         "underscore": {
             "exports": "_"
